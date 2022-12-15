@@ -15,6 +15,6 @@ COPY . .
 
 RUN yarn run build
 
-COPY .next .next
+COPY . .
 
 CMD ["yarn","run","start"]
