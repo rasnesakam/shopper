@@ -10,8 +10,11 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
-RUN yarn run build
 
 COPY . .
+
+RUN yarn run build
+
+COPY .next .next
 
 CMD ["yarn","run","start"]
