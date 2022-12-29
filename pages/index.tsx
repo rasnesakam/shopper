@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css'
 function HelloWorld(){
 	return <>
 	
-	<h1>SELAM</h1>
+	<h1>BEN AYBUKE</h1>
 	
 	</>
 }
