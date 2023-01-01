@@ -10,16 +10,16 @@ module.exports = {
 		colors: {
 			primary: "#F26419",
 			secondary: "#216477",
-			ground:"#fefefe"
+			ground:"#fefefe",
 		},
 		screens:{
-			'sm': '576px',
+			'sm': '576px', // eğer ekran genişliği 567px ten uzunsa
 			// => @media (min-width: 576px) { ... }
 
-			'md': '960px',
+			'md': '960px', // eğer ekran genişliği 960px ten uzunsa
 			// => @media (min-width: 960px) { ... }
 
-			'lg': '1440px',
+			'lg': '1440px', // eğer ekran genişliği 1440px ten uzunsa
 			// => @media (min-width: 1440px) { ... }
 		}
 	},

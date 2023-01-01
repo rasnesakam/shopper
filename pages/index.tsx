@@ -18,8 +18,8 @@ export default function Home() {
       <Head>
         <title>Batarya Dünyası</title>
         <meta name="description" content="Batarya Dünyası" />
-		<link rel="shortcut icon" href="/images/favicon.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico" />
+		    <link rel="shortcut icon" href="/images/favicon.ico" />
+		    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico" />
       </Head>
 
 		<nav>
