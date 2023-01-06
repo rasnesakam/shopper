@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
 	faAngleLeft,
@@ -10,19 +9,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Slide = ({items, timeout}: {items: Array<{imageUri:string, redirectTo: string}>, timeout:number}) => {
 	const [current, setCurrent] = useState(0);
-	//TODO: Promise veya benzeri yapıda timeout ile zaman ayarlı slayt kaydırma işlemi yapılmalıdır
+
+	const stepNext = () => setCurrent( (current + 1) % items.length);
+	const stepPrev = () => setCurrent((current + items.length - 1) % items.length);
+
+	useEffect(() => {
+		const interval = setInterval( stepNext, timeout);
+		
+		return () => clearInterval(interval)
+	}, [current, timeout]);
+	
 	return <>
 
 		<div className="w-full h-[580px] relative group">
-			<Link href={items[Math.abs(current)].redirectTo} style={{ backgroundImage: `url(${items[Math.abs(current)].imageUri})`}}
+			<Link href={items[Math.abs(current)].redirectTo}>
+			<div style={{ backgroundImage: `url(${items[current].imageUri})`}}
 				className="w-full h-full bg-center bg-cover duration-500"
-			></Link>
+			></div>
+			</Link>
 			<button className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] text-2xl left-5 rounded-lg bg-primary/80 text-white cursor-pointer p-2"
-				onClick={() => setCurrent((current - 1) % items.length) }>
+				onClick={ stepPrev }>
 				<FontAwesomeIcon icon={faAngleLeft} />
 			</button>
 			<button className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[50%] text-2xl right-5 rounded-lg bg-primary/80 text-white cursor-pointer p-2"
-				onClick={ () => setCurrent( (current + 1) % items.length) }>
+				onClick={ stepNext }>
 				<FontAwesomeIcon icon={faAngleRight} />
 			</button>
 		</div>
