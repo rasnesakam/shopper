@@ -5,25 +5,39 @@ import styles from '../styles/Home.module.css'
 import {Slide} from '../src/components/Slide'
 import { ProductItem } from '../src/components/ProductItem'
 import Layout from "./layout"
-import { FeaturedProducts } from '../src/components/FeaturedProducts'
+import { HorizontalProdutsList } from '../src/components/HorizontalProductList'
+import Category from '../src/types/Category'
 
 
-function HelloWorld(){
-	return <>
-	
-	<h1>BEN AYBUKE</h1>
-	
-	</>
-}
 
 export default function Home() {
-  return (
+	
+	const categories: Array<Category> = [];
+
+
+	return (
     <>
-		<Slide timeout={5000} items={[
+		<Slide timeout={3000} items={[
 			    {imageUri: "/images/batarya_dunyasi_design.png",redirectTo: ""},
 			    {imageUri: "/images/logo_bd_180x180.png", redirectTo: ""},
 		      ]}/>
-		<FeaturedProducts />
+
+		{/* Öne Çıkan Ürünler */}
+		<HorizontalProdutsList title="Öne Çıkanlar" items={[
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
+			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10}
+		]} />
 	</>
   )
 }
