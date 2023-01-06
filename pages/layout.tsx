@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import { NavBar } from "../src/components/NavBar"
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Slide } from '../src/components/Slide'
 
-export default function Layout({children}){
+export default function Layout({children}: any){
   
   return <>
     <Head>
@@ -16,7 +14,7 @@ export default function Layout({children}){
 
 	<NavBar />
 
-    <main className="flex flex-col items-center" >
+    <main className="flex flex-col items-center h-screen" >
       {children}
     </main>
 
