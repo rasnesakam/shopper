@@ -24,9 +24,9 @@ function NavBar(){
 			setSticky(sticky_disabled);
 	}
 
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-	}, []);
+	// useEffect(() => {
+	// 	window.addEventListener('scroll', handleScroll);
+	// }, []);
 
 	return <>
 	
