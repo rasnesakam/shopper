@@ -7,21 +7,23 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-export const Slide = ({items, timeout}: {items: Array<{imageUri:string, redirectTo: string}>, timeout:number}) => {
+export const Slide = ({items, timeout}: {items: Array<{imageUri:string, redirectTo: string}>, timeout?:number}) => {
 	const [current, setCurrent] = useState(0);
 
 	const stepNext = () => setCurrent( (current + 1) % items.length);
 	const stepPrev = () => setCurrent((current + items.length - 1) % items.length);
 
 	useEffect(() => {
-		const interval = setInterval( stepNext, timeout);
+		if (timeout != undefined){
+			const interval = setInterval( stepNext, timeout);
 		
-		return () => clearInterval(interval)
+			return () => clearInterval(interval)
+		}
 	}, [current, timeout]);
 	
 	return <>
 
-		<div className="w-full h-[580px] relative group">
+		<div className="w-full h-[580px] static group">
 			<Link href={items[Math.abs(current)].redirectTo}>
 			<div style={{ backgroundImage: `url(${items[current].imageUri})`}}
 				className="w-full h-full bg-center bg-cover duration-500"
