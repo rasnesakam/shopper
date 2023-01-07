@@ -77,7 +77,6 @@ export default function Products(){
 							<FontAwesomeIcon icon={faPlus} />
 						</button>
 					</div>
-
 					<button className="w-1/2 h-[48px] bg-primary text-center text-white"
 						onClick={() => {}}>Adet</button>
 				</div>
