@@ -1,27 +1,24 @@
+import Link from "next/link"
 
 function Menus(){
-	// Responsive ayarlamaları yapılacak
+
+	const menuItems = [
+		{text:"Tüketici Pili Ve Batarya", href:""},
+		{text:"Endüstriyel Pil", href:""},
+		{text:"Şarj Aleti", href:""},
+		{text:"Şarj Aleti Setleri", href:""},
+		{text:"Powerbank", href:""},
+		{text:"Fener Ve Işıldak", href:""},
+		{text:"Pil Montaj Malzemesi", href:""},
+		{text:"Pil Tasarım Grubu", href:""},
+	]
 	return <>
 		<ul className="w-11/12 flex flex-row flex-wrap justify-center">
-			<li className="m-3 text-ground text-center">Tüketici Pili Ve Batarya</li>
-
-			<li className="m-3 text-ground text-center">Endüstriyel Pil</li>
-			
-			<li className="m-3 text-ground text-center">Şarj Aleti</li>
-			
-			<li className="m-3 text-ground text-center">Şarj Aleti Setleri</li>
-
-			<li className="m-3 text-ground text-center">Powerbank</li>
-
-			<li className="m-3 text-ground text-center"> Fener Ve Işıldak</li>
-			
-			<li className="m-3 text-ground text-center"> Pil Montaj Malzemesi</li>
-			
-			<li className="m-3 text-ground text-center"> Pil Tasarım Grubu</li>
-			
-			
-			
-			
+			{menuItems.map(menuItem => 
+				<li className="m-3 text-ground text-center">
+					<Link href={menuItem.href}>{menuItem.text}</Link>
+				</li>
+				)}			
 		</ul>
 	</>
 }
