@@ -59,7 +59,7 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 	</>
 }
 
-export default function sepet(){
+export default function Sepet(){
 	let order: Order = getOrders("orders");
 	const [checked, setChecked] = useState(false);
 	const checkStyle = "bg-primary";
@@ -97,7 +97,7 @@ export default function sepet(){
 		<div className="flex flex-row justify-center gap-2 pt-5 flex-wrap">
 			<div className="w-11/12">Sepetim <span className="">({order.products.length} Ürün)</span></div>
 			<div className="w-full  md:w-7/12">
-				{order.products.map(product => <OrderItem product={product.product} amount={product.amount} />)}
+				{order.products.map((product,index) => <OrderItem product={product.product} amount={product.amount} key={index} />)}
 			</div>
 			<div className="w-full md:w-4/12">
 				<div className="border w-full shadow-md rounded-lg flex flex-col divide-y-2 p-5">
@@ -121,7 +121,7 @@ export default function sepet(){
 							</div>
 						</div>
 						<div className="w-10/12 ml-1">
-							Ön Bilgilendirme Koşulları'nı ve Mesafeli Satış Sözleşmesi'ni okudum, onaylıyorum.
+							Ön Bilgilendirme Koşullarını ve Mesafeli Satış Sözleşmesini okudum, onaylıyorum.
 						</div>
 					</div>
 					<div className="flex p-2 justify-center flex-row">

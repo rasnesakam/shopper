@@ -3,17 +3,10 @@ import Product from "../types/Product";
 import fetcData from "./fetchData";
 
 export default function 
-getProductsByCategory(
-	category: Category,
-	{size = 0, page = 0}: {size:number, page: number}
-	): Array<Product>{
+getCategories(): Array<Category>{
 	const shopAppUrl = "";
 	return fetcData(
-		"https://emakas.net/api/mock/product",
-		[
-			{"size": size.toString()},
-			{"page":page.toString()}
-		]
+		"https://emakas.net/api/mock/category",
 	);
 	/*
 	return fetcData(

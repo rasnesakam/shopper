@@ -101,8 +101,8 @@ export default function Products(){
 		<div className="rounded-lg border border-gray-400 w-full md:w-11/12 m-5">
 			<div className="bg-primary rounded-t-lg p-3 text-white">Ürün Özellikleri</div>
 			<div className="flex flex-col divide-y-2">
-				{product.props?.map((item) => {
-					return <div className="py-1">
+				{product.props?.map((item,index) => {
+					return <div className="py-1" key={index}>
 								<div className="float-left w-1/3 text-center">{item.key}</div>
 								<div className="float-left w-2/3 text-left">{item.value}</div>
 							</div>

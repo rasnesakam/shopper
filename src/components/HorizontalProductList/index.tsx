@@ -19,7 +19,7 @@ const HorizontalProdutsList = ({title,items}:{title:string,items: Array<Product>
 			<div className="border border-primary rounded-lg w-full p-2 gap-x-2 flex flex-row overflow-x-scroll scroll scroll-smooth">
 			
 				{items.map((product: Product, index: number) => {
-					return <ProductItem product={product} itemId={`urun-${index}`}/>
+					return <ProductItem product={product} itemId={`urun-${index}`} key={index}/>
 				})}
 
 			</div>

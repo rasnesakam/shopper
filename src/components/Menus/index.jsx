@@ -14,8 +14,8 @@ function Menus(){
 	]
 	return <>
 		<ul className="w-11/12 flex flex-row flex-wrap justify-center">
-			{menuItems.map(menuItem => 
-				<li className="m-3 text-ground text-center">
+			{menuItems.map((menuItem,index) => 
+				<li key={index} className="m-3 text-ground text-center">
 					<Link href={menuItem.href}>{menuItem.text}</Link>
 				</li>
 				)}			
