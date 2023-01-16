@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCookie } from "cookies-next"
 import Image from "next/image";
 import { useState } from "react";
-import getOrders from "../../src/functions/getOrders";
+import getOrders from "../../src/functions/getOrderFromCookie";
 import Order from "../../src/types/Order";
 import Product from "../../src/types/Product";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";

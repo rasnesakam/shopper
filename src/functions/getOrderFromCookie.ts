@@ -3,7 +3,7 @@ import { getCookieParser } from "next/dist/server/api-utils";
 import Order from "../types/Order";
 import Product from "../types/Product";
 
-export default function getOrders(cookieName: string): Order{
+export default function getOrderFromCookie(cookieName: string): Order{
 	let cookie = getCookie(cookieName);
 	let object = JSON.parse(cookie?.toString() ?? "{}");
 	let order: Order = {products:[]}
