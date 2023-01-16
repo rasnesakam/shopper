@@ -5,7 +5,6 @@ import { faUser } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 
 function AccountButtons (){
-	const user = {};
 	return <>
 			<div className=" mr-5 flex flex-row justify-center">
 
