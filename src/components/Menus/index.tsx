@@ -1,22 +1,24 @@
-import Link from "next/link"
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import Category from "../../types/Category";
+import getCategories from "../../functions/getCategories";
 
 function Menus(){
 
-	const menuItems = [
-		{text:"Tüketici Pili Ve Batarya", href:""},
-		{text:"Endüstriyel Pil", href:""},
-		{text:"Şarj Aleti", href:""},
-		{text:"Şarj Aleti Setleri", href:""},
-		{text:"Powerbank", href:""},
-		{text:"Fener Ve Işıldak", href:""},
-		{text:"Pil Montaj Malzemesi", href:""},
-		{text:"Pil Tasarım Grubu", href:""},
-	]
+	let empty: Category[] = [];
+	const [menuItems, setMenuItems] = useState(empty);
+	useEffect(() => {
+		async function fetchData(){
+			let datas = await getCategories()
+			setMenuItems(datas);
+		}
+		fetchData();
+	},[])
 	return <>
 		<ul className="w-11/12 flex flex-row flex-wrap justify-center">
 			{menuItems.map((menuItem,index) => 
 				<li key={index} className="m-3 text-ground text-center">
-					<Link href={menuItem.href}>{menuItem.text}</Link>
+					<Link href={`kategori/${menuItem.uri}`}>{menuItem.name}</Link>
 				</li>
 				)}			
 		</ul>
