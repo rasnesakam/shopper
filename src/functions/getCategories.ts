@@ -5,15 +5,7 @@ import fetcData from "./fetchData";
 
 export default async function 
 getCategories(): Promise<Array<Category>>{
-	let url = config.SHOP_APP_URL + "/Categories/All"
+	let url = config.SHOP_APP_URL + "/Categories"
 	return await fetcData(url);
 
-	/*
-	return fetcData(
-		`${shopAppUrl}/products/category/${category.uri}`,
-		[
-			
-		]
-	);
-	*/
 }
