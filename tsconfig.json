@@ -16,6 +16,6 @@
     "incremental": true,
 	"typeRoots": ["./types", "./node_modules/@types"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/SearchBar/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/SearchBar/index.tsx"],
   "exclude": ["node_modules", "types"]
 }
