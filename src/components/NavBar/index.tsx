@@ -3,6 +3,7 @@ import {SearchBar} from "../SearchBar"
 import Image from "next/image"
 import { useState, useEffect } from "react" 
 import {AccountButtons} from "../AccountButtons"
+import Link from "next/link"
 
 function NavBar(){
 
@@ -36,10 +37,12 @@ function NavBar(){
 	
 		<nav>
 
-			<div className="w-full bg-ground sm:flex sm:flex-row sm:justify-between" style={sticky}>
+			<div className="w-full bg-ground md:flex md:flex-row md:justify-between" style={sticky}>
 
-				<Image className="mx-auto sm:mx-0" src="/images/batarya_dunyasi_design.png" width={height} height={height} />
-				<div className="w-1/2 my-auto pr-5">
+				<Link href="/">
+					<Image className="mx-auto sm:mx-0" src="/images/batarya_dunyasi_design.png" alt="" width={height} height={height} />
+				</Link>
+				<div className="w-full mt-2 mb-2 md:w-1/2 sm:my-auto p-2 sm:pr-5">
 					<SearchBar />
 				</div>
 
