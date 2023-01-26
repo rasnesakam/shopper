@@ -25,8 +25,8 @@ const HorizontalProdutsList = ({title,productProvider}:{title:string,productProv
 	
 		<div className="w-full p-5 relative">
 			<span className="text-2xl ml-2">{`${title}:`}</span>
-			<div className="border border-primary rounded-lg w-full p-2 gap-x-2 flex flex-row overflow-x-scroll scroll scroll-smooth">
 			
+			<div className="border border-primary rounded-lg w-full p-2 gap-x-2 flex flex-row overflow-x-scroll scroll scroll-smooth no-scrollbar">
 				{items.map((product: Product, index: number) => {
 					return <ProductItem product={product} itemId={`urun-${index}`} key={index}/>
 				})}
