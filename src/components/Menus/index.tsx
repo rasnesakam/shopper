@@ -18,7 +18,7 @@ function Menus(){
 		<ul className="w-11/12 flex flex-row flex-wrap justify-center">
 			{menuItems.map((menuItem,index) => 
 				<li key={index} className="m-3 text-ground text-center">
-					<Link href={`kategori/${menuItem.uri}`}>{menuItem.name}</Link>
+					<Link href={`/kategori/${menuItem.uri}`}>{menuItem.name}</Link>
 				</li>
 				)}			
 		</ul>
