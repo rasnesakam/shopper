@@ -1,16 +1,25 @@
 import { ProductItem } from "../ProductItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "../../types/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 
-const HorizontalProdutsList = ({title,items}:{title:string,items: Array<Product>}) => {
+const HorizontalProdutsList = ({title,productProvider}:{title:string,productProvider: () => Promise<Array<Product>>}) => {
 
 	const [activeItemIndex, setActiveItemIndex] = useState(0);
+	let empty: Array<Product> = []
+	const [items, setItems] = useState(empty);
 	const chevronWidth = 40;
 
+	useEffect(() => {
+		async function fetchData(){
+			let datas = await productProvider()
+			setItems(datas);
+		}
+		fetchData();
+	},[]);
 
 	return <>
 	
