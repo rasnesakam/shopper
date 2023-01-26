@@ -4,14 +4,13 @@ import styles from '../styles/Home.module.css'
 
 export default function Layout({children}: any){
   
-  return <>
+  return <div className="bg-ground">
     <Head>
       <title>Batarya Dünyası</title>
       <meta name="description" content="Batarya Dünyası" />
 		  <link rel="shortcut icon" href="/images/favicon.ico" />
 		  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico" />
     </Head>
-
 	<NavBar />
 
     <main className="flex flex-col items-center min-h-screen" >
@@ -26,5 +25,5 @@ export default function Layout({children}: any){
           Powered by{' emakas '}
         </a>
     </footer>
-    </>
+    </div>
 }
