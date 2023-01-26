@@ -1,7 +1,13 @@
 type Product = {
 	name: string;
 	description: string;
-	imageUrl: Array<string>;
+	productImage: Array<{
+		id:string
+		productId: string,
+		product?: Product,
+		fileUri: string,
+		altText: string
+	}>;
 	uri: string;
 	price: number;
 	stockCode?: string,

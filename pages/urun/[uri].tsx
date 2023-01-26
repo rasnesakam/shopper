@@ -42,7 +42,12 @@ export default function Products(){
 	const product: Product = {
 		name:"LG Chem INR18650M26 - 3.7V 2600mAh Li-ion Şarjlı Pil - 10A",
 		description: "",
-		imageUrl: [""],
+		productImage: [{
+			id:"",
+			fileUri:"",
+			altText:"",
+			productId:""
+		}],
 		price: 59.99,
 		uri: "",
 		stockCode: "900.817.503.009",
