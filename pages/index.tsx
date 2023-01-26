@@ -7,13 +7,23 @@ import { ProductItem } from '../src/components/ProductItem'
 import Layout from "./layout"
 import { HorizontalProdutsList } from '../src/components/HorizontalProductList'
 import Category from '../src/types/Category'
+import { useEffect, useState } from 'react'
+import getCategories from '../src/functions/getCategories'
+import getProductsByCategory from '../src/functions/getProductsByCategory'
 
 
 
 export default function Home() {
 	
-	const categories: Array<Category> = [];
-
+	const empty: Array<Category> = [];
+	const [categories, setCategories] = useState(empty);
+	useEffect(() => {
+		async function fetchData(){
+			var datas = await getCategories();
+			setCategories(datas);
+		}
+		fetchData()
+	},[]);
 
 	return (
     <>
@@ -23,21 +33,9 @@ export default function Home() {
 		      ]}/>
 
 		{/* Öne Çıkan Ürünler */}
-		<HorizontalProdutsList title="Öne Çıkanlar" items={[
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10},
-			{name:"item1",description:"item1",imageUrl:["/images/logo_bd_180x180.png"],uri:"",price:10}
-		]} />
+		{categories.map((category, index) => {
+			return <HorizontalProdutsList key={index} title={category.name} productProvider={async () => getProductsByCategory(category,{size:5, page: 0})} />
+		})}
 	</>
   )
 }
