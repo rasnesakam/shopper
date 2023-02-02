@@ -1,10 +1,11 @@
-import { createSlice, Slice } from "@reduxjs/toolkit";
+import { createSlice, Slice, SliceCaseReducers } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+import Account from "../../../src/types/Account";
 
-export const ProfileSlice = createSlice({
+export const ProfileSlice: Slice<Account, SliceCaseReducers<Account>,"Profile"> = createSlice({
 	name: "Profile",
 	initialState: {
-		name:null,
+		name:"",
 		authToken: ""
 	},
 	reducers: {
@@ -22,6 +23,6 @@ export const ProfileSlice = createSlice({
 	}
 });
 
-export const {setProfileData} = ProfileSlice.actions;
+export const { setProfileData } = ProfileSlice.actions;
 
 export default ProfileSlice.reducer;
