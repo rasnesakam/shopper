@@ -1,10 +1,12 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import profileReducer from "./slices/profile";
+import orderReducer from "./slices/order"
 
 const makeStore = () => configureStore({
 	reducer: {
-		profile: profileReducer
+		profile: profileReducer,
+		order: orderReducer
 	},
 	devTools: true
 });
