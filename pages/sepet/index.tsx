@@ -8,6 +8,9 @@ import Order from "../../src/types/Order";
 import Product from "../../src/types/Product";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../app/store";
+import { removeOrder } from "../../app/store/slices/order";
 
 function OrderItem(order:{product: Product, amount:number, status?:string}){
 	let statusComponent = <></>;
@@ -15,14 +18,13 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 	{
 		statusComponent = <div>{order.status}</div>
 	}
-
-	const [amount, setAmount] = useState(0);
+	const dispatch = useDispatch();
+	const [amount, setAmount] = useState(order.amount);
 	const [width, height] = [128,128]
-	
 	return <>
 		<div className="border shadow-md mb-5 p-2 rounded-lg flex flex-row flex-wrap">
 			<div className="w-full md:w-1/6">
-				<Image src={order.product.imageUrl[0]} alt={""} width={width} height={height} className="mx-auto"/>
+				<Image src={order.product.productImage[0].fileUri} alt={""} width={width} height={height} className="mx-auto"/>
 			</div>
 			<div className="w-full md:w-3/6">
 				<div className="text-xl font-semibold">{order.product.name}</div>
@@ -31,8 +33,8 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 					<div className="w-full p-1 md:w-2/3 md:p-0 flex flex-row flex-wrap float-right">
 						<div className="w-1/2 h-[48px] flex items-center divide-x-2 border border-gray-400 rounded-sm">
 							
-							<button className="text-2xl h-full font-bold w-3/12 hover:bg-primary hover:text-white"
-								onClick={() => setAmount(Math.max(0,amount - 1))}>
+							<button className="text-2xl h-full font-bold w-3/12 hover:bg-primary  hover:text-white"
+								onClick={() => setAmount(Math.max(1,amount - 1))}>
 								<FontAwesomeIcon icon={faMinus} />
 							</button>
 							<div className="text-2xl text-center w-6/12">{amount}</div>
@@ -50,8 +52,8 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 			<div className="w-full md:w-2/6 flex flex-row items-center">
 				<div className="w-1/2 text-center">{order.product.price} ₺</div>
 				<div className="w-1/2 text-center">
-					<button>
-						<FontAwesomeIcon icon={faTrashCan} className="text-xl hover:text-primary" />
+					<button className="p-1 rounded-sm hover:text-primary focus:border focus:border-primary" onClick={() => dispatch(removeOrder(order))}>
+						<FontAwesomeIcon icon={faTrashCan} className="text-xl" />
 					</button>
 				</div>
 			</div>
@@ -60,35 +62,13 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 }
 
 export default function Sepet(){
-	let order: Order = getOrders("orders");
 	const [checked, setChecked] = useState(false);
 	const checkStyle = "bg-primary";
 	const checkedContent = <FontAwesomeIcon icon={faCheck} size="xs" className="absolute top-0 left-0 text-white"/>
+
+	const order = useSelector((state: AppState) => state.order);
+	const dispatch = useDispatch();
 	
-	order = {
-		products:[
-			{
-				amount: 1,
-				product:{
-					name:"LG Chem INR18650M26mAh Li-Ion Şarjlı Pil - 10A",
-					description: "",
-					price: 59.99,
-					imageUrl:["/images/batarya_dunyasi_design.png"],
-					uri:""
-				}
-			},
-			{
-				amount: 1,
-				product:{
-					name:"LG Chem INR18650M26mAh Li-Ion Şarjlı Pil - 10A",
-					description: "",
-					price: 59.99,
-					imageUrl:["/images/batarya_dunyasi_design.png"],
-					uri:""
-				}
-			}
-		]
-	}
 	const priceOrder = order.products.reduce((sum, item) => sum +  item.product.price, 0);
 	const priceCargo = 10;
 	const priceTotal = Math.floor((priceOrder + priceCargo) * 100 ) / 100;
