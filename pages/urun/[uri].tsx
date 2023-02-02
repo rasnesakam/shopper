@@ -12,6 +12,11 @@ import {
 	faArrowTrendDown
  } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrderData, addOrder } from "../../app/store/slices/order";
+import { AppState } from "../../app/store";
+
+//export default function Products({product}: {product: Product}){
 export default function Products(){
 
 	const router = useRouter();
@@ -20,23 +25,11 @@ export default function Products(){
 	const [height, width] = [360,360];
 	const favoriteTexts = ["Favorilere Ekle", "Favorilerden Çıkart"];
 
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState(1);
 	const [favoriteIcon, setFavoriteIcon] = useState(emptyHeart);
 	const [favoriteText, setFavoriteText] = useState(favoriteTexts[0]);
-
-	//TODO: Favorite actions will be implemented
-	const handleFavorite = () => {
-		if (favoriteIcon == emptyHeart){
-			
-			setFavoriteIcon(filledHeart);
-			setFavoriteText(favoriteTexts[1]);
-		}
-		else{
-			
-			setFavoriteIcon(emptyHeart);
-			setFavoriteText(favoriteTexts[0]);
-		}
-	}
+	const order = useSelector((state: AppState) => state.order)
+	const dispatch = useDispatch();
 
 	// nextin arka plan aksitonlarından ürünü getir
 	const product: Product = {
@@ -59,6 +52,26 @@ export default function Products(){
 			{key:"mAh değeri",value:"2600mAh"},
 		]
 	};
+
+	//TODO: Favorite actions will be implemented
+	const handleFavorite = () => {
+		if (favoriteIcon == emptyHeart){
+			
+			setFavoriteIcon(filledHeart);
+			setFavoriteText(favoriteTexts[1]);
+		}
+		else{
+			
+			setFavoriteIcon(emptyHeart);
+			setFavoriteText(favoriteTexts[0]);
+		}
+	}
+
+	// Handle cart action
+	const addCard = () => {
+		dispatch(addOrder({product, amount}))
+	};
+
 	return <>
 		<div className="rounded-lg border border-gray-400 w-full md:w-11/12 m-5 p-5">
 			<div className="rounded-lg border  border-gray-300 sm:w-1/2 sm:float-left md:w-[360px] md:h-[360px]">
@@ -73,7 +86,7 @@ export default function Products(){
 				<div className="w-full flex flex-row md:w-2/3 mt-2">
 					<div className="w-1/2 h-[48px] flex items-center divide-x-2 border border-gray-400 rounded-sm">
 						<button className="text-2xl  h-full font-bold w-3/12 hover:bg-primary hover:text-white"
-							onClick={() => setAmount(Math.max(0,amount - 1))}>
+							onClick={() => setAmount(Math.max(1,amount - 1))}>
 							<FontAwesomeIcon icon={faMinus} />
 						</button>
 						<div className="text-2xl text-center w-6/12">{amount}</div>
@@ -83,7 +96,7 @@ export default function Products(){
 						</button>
 					</div>
 					<button className="w-1/2 h-[48px] bg-primary text-center text-white"
-						onClick={() => {}}>Adet</button>
+						onClick={addCard}>Sepete Ekle</button>
 				</div>
 				<div className="w-full flex flex-row gap-5 md:w-2/3 mt-4">
 					<div className="flex flex-col items-center w-1/3 select-none cursor-pointer" onClick={handleFavorite}>
