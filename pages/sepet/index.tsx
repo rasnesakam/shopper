@@ -69,7 +69,7 @@ export default function Sepet(){
 	const order = useSelector((state: AppState) => state.order);
 	const dispatch = useDispatch();
 	
-	const priceOrder = order.products.reduce((sum, item) => sum +  item.product.price, 0);
+	const priceOrder = order.products.reduce((sum, item) => sum + (item.product.price * item.amount), 0);
 	const priceCargo = 10;
 	const priceTotal = Math.floor((priceOrder + priceCargo) * 100 ) / 100;
 	return <div className="w-full px-5 pt-5">
