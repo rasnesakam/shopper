@@ -9,8 +9,8 @@ import Product from "../../src/types/Product";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../../app/store";
-import { removeOrder } from "../../app/store/slices/order";
+import { AppState } from "../../src/redux/store";
+import { removeOrder } from "../../src/redux/slices/order";
 
 function OrderItem(order:{product: Product, amount:number, status?:string}){
 	let statusComponent = <></>;
@@ -76,10 +76,10 @@ export default function Sepet(){
 		
 		<div className="flex flex-row justify-center gap-2 pt-5 flex-wrap">
 			<div className="w-11/12">Sepetim <span className="">({order.products.length} Ürün)</span></div>
-			<div className="w-full  md:w-7/12">
+			<div className="w-full  lg:w-7/12">
 				{order.products.map((product,index) => <OrderItem product={product.product} amount={product.amount} key={index} />)}
 			</div>
-			<div className="w-full md:w-4/12">
+			<div className="w-full lg:w-4/12">
 				<div className="border w-full shadow-md rounded-lg flex flex-col divide-y-2 p-5">
 					<div className="p-2 flex flex-row">
 						<div className="w-1/2 text-left">Tutar</div>
