@@ -13,11 +13,42 @@ import {
  } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrderData, addOrder } from "../../app/store/slices/order";
-import { AppState } from "../../app/store";
+import { setOrderData, addOrder } from "../../src/redux/slices/order";
+import { AppState } from "../../src/redux/store";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import getProductByUri from "../../src/functions/getProductByUri";
 
-//export default function Products({product}: {product: Product}){
-export default function Products(){
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+	const productUri = context.query.uri;
+	const product = await getProductByUri(decodeURI(productUri as string));
+	//todo provide an empty value for product
+	return {
+		props:{
+			product: product ?? {
+				name:"LG Chem INR18650M26 - 3.7V 2600mAh Li-ion Şarjlı Pil - 10A",
+				description: "",
+				productImage: [{
+					id:"",
+					fileUri:"",
+					altText:"",
+					productId:""
+				}],
+				price: 59.99,
+				uri: "",
+				stockCode: "900.817.503.009",
+				mark: "LG",
+				props: [
+					{key:"Pil türü",value:"Li-ion"},
+					{key:"Amper değeri",value:"10A"},
+					{key:"Voltaj değeri",value:"3.7V"},
+					{key:"mAh değeri",value:"2600mAh"},
+				]
+			}
+		}
+	}
+}
+
+export default function Products({product}: {product: Product}){
 
 	const router = useRouter();
 	const {uri} = router.query;
@@ -32,6 +63,7 @@ export default function Products(){
 	const dispatch = useDispatch();
 
 	// nextin arka plan aksitonlarından ürünü getir
+	/*
 	const product: Product = {
 		name:"LG Chem INR18650M26 - 3.7V 2600mAh Li-ion Şarjlı Pil - 10A",
 		description: "",
@@ -52,6 +84,7 @@ export default function Products(){
 			{key:"mAh değeri",value:"2600mAh"},
 		]
 	};
+	*/
 
 	//TODO: Favorite actions will be implemented
 	const handleFavorite = () => {
