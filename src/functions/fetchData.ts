@@ -8,7 +8,9 @@ async function fetcData<T>(url: string, queryOpts?: Array<{}>): Promise<Array<T>
 		return (response.json())
 	})
 	.then(data => {
-		data.map((item: T) => {datas.push(item)});
+		if (data instanceof Array)
+			data.map((item: T) => {datas.push(item)});
+		else datas.push(data);
 	})
 	.catch(err => {
 		console.log(err);
