@@ -7,8 +7,6 @@ import {
 	faPlus,
 	faMinus,
 	faHeart as filledHeart,
-	faRightLeft,
-	faTag,
 	faArrowTrendDown
  } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
@@ -50,41 +48,13 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
 export default function Products({product}: {product: Product}){
 
-	const router = useRouter();
-	const {uri} = router.query;
-
 	const [height, width] = [360,360];
 	const favoriteTexts = ["Favorilere Ekle", "Favorilerden Çıkart"];
 
 	const [amount, setAmount] = useState(1);
 	const [favoriteIcon, setFavoriteIcon] = useState(emptyHeart);
 	const [favoriteText, setFavoriteText] = useState(favoriteTexts[0]);
-	const order = useSelector((state: AppState) => state.order)
 	const dispatch = useDispatch();
-
-	// nextin arka plan aksitonlarından ürünü getir
-	/*
-	const product: Product = {
-		name:"LG Chem INR18650M26 - 3.7V 2600mAh Li-ion Şarjlı Pil - 10A",
-		description: "",
-		productImage: [{
-			id:"",
-			fileUri:"",
-			altText:"",
-			productId:""
-		}],
-		price: 59.99,
-		uri: "",
-		stockCode: "900.817.503.009",
-		mark: "LG",
-		props: [
-			{key:"Pil türü",value:"Li-ion"},
-			{key:"Amper değeri",value:"10A"},
-			{key:"Voltaj değeri",value:"3.7V"},
-			{key:"mAh değeri",value:"2600mAh"},
-		]
-	};
-	*/
 
 	//TODO: Favorite actions will be implemented
 	const handleFavorite = () => {
@@ -102,6 +72,8 @@ export default function Products({product}: {product: Product}){
 
 	// Handle cart action
 	const addCard = () => {
+		console.log("added");
+		console.log({product, amount})
 		dispatch(addOrder({product, amount}))
 	};
 
