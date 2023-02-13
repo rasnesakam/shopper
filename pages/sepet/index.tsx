@@ -11,6 +11,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../src/redux/store";
 import { removeOrder } from "../../src/redux/slices/order";
+import config from "../../src/functions/config";
 
 function OrderItem(order:{product: Product, amount:number, status?:string}){
 	let statusComponent = <></>;
@@ -21,10 +22,13 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 	const dispatch = useDispatch();
 	const [amount, setAmount] = useState(order.amount);
 	const [width, height] = [128,128]
+	const image = order.product.productImages.length > 0 ? order.product.productImages[0].fileUri: "/images/default.png";
+	const altText = order.product.productImages.length > 0 ? order.product.productImages[0].altText: "";
 	return <>
 		<div className="border shadow-md mb-5 p-2 rounded-lg flex flex-row flex-wrap">
 			<div className="w-full md:w-1/6">
-				<Image src={order.product.productImage[0].fileUri} alt={""} width={width} height={height} className="mx-auto"/>
+				<Image src={`/remote/images/${image}`}
+				 alt={altText} width={width} height={height} className="mx-auto"/>
 			</div>
 			<div className="w-full md:w-3/6">
 				<div className="text-xl font-semibold">{order.product.name}</div>
