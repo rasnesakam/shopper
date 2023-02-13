@@ -26,20 +26,13 @@ export const OrderSlice: Slice<Order, SliceCaseReducers<Order>,"Order"> = create
 			if (index > -1)
 				state.products.splice(index,1);
 		}
-	},
-	extraReducers: {
-		[HYDRATE]: (state, action) => {return {
-				...state,
-				...action.payload.order
-			}
-		}
 	}
 })
 
 export const { setOrderData, addOrder, removeOrder } = OrderSlice.actions;
 
 const persistConfig: PersistConfig<Order> = {
-	key: `${config.APP_NAME}/order`,
+	key: `${config.APP_NAME_NORMALIZED}/order`,
 	storage
 }
 

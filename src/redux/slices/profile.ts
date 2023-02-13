@@ -29,7 +29,7 @@ export const ProfileSlice: Slice<Account, SliceCaseReducers<Account>,"Profile"> 
 export const { setProfileData } = ProfileSlice.actions;
 
 const persistConfig: PersistConfig<Account> = {
-	key: `${config.APP_NAME}/profile`,
+	key: `${config.APP_NAME_NORMALIZED}/profile`,
 	storage
 }
 const persistedProfileReducer = persistReducer(persistConfig, ProfileSlice.reducer)
