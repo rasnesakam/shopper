@@ -1,7 +1,7 @@
 type Product = {
 	name: string;
 	description: string;
-	productImage: Array<{
+	productImages: Array<{
 		id:string
 		productId: string,
 		product?: Product,
