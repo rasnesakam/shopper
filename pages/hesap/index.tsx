@@ -1,11 +1,11 @@
 import { Tab, Tabbed } from "../../src/components/TabbedPane";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../../app/store";
 import authToken from "../../src/functions/authToken";
+import { AppState } from "../../src/redux/store";
 
 function page(){
 	return <>
-		<Tabbed>
+		<Tabbed className="w-8/12">
 			<Tab name="Adres Güncelle">
 				<div>
 					<form action="" className="flex flex-col gap-2">
