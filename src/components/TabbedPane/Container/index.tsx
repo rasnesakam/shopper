@@ -24,7 +24,7 @@ export default function Tabbed({className, children}: {className?: string, child
 					}
 				</ul>
 			</div>
-			<div className="p-2">
+			<div className="p-2 w-9/12">
 				{currentEl}
 			</div>
 		</div>

@@ -7,17 +7,23 @@ import config from "../../../src/functions/config";
 import Order from "../../../src/types/Order";
 import Product from "../../../src/types/Product";
 
+
+
 export const OrderSlice: Slice<Order, SliceCaseReducers<Order>,"Order"> = createSlice({
 	name:"Order",
 	initialState: {
-		products: new Array<{product: Product;amount: number;status?: string;}>()
+		products: new Array<{product: Product;amount: number;status?: string;}>(),
+		number : 1
 	},
 	reducers: {
 		setOrderData: (state, action) => {
 			state.products = action.payload;
 		},
 		addOrder: (state, action) => {
+			console.log(state.number)
+			state.number += 1;
 			state.products.push(action.payload)
+			console.log(state.number)
 		},
 		removeOrder: (state, action) => {
 			console.log(action.payload)

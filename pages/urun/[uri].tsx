@@ -72,8 +72,6 @@ export default function Products({product}: {product: Product}){
 
 	// Handle cart action
 	const addCard = () => {
-		console.log("added");
-		console.log({product, amount})
 		dispatch(addOrder({product, amount}))
 	};
 
