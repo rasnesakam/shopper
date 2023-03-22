@@ -1,9 +1,8 @@
 import { Action, combineReducers, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import {persistedOrderReducer} from "./slices/order";
 import { persistedProfileReducer } from "./slices/profile"
-import { persistStore } from 'redux-persist';
+import { persistStore, FLUSH } from 'redux-persist';
 import thunk from 'redux-thunk';
-
 
 const combinedReducer = combineReducers({
 	profile: persistedProfileReducer,
