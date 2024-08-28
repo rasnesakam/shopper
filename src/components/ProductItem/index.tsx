@@ -13,7 +13,7 @@ const ProductItem = ({product, itemId}: {product: Product, itemId?:string}) => {
 	return <>
 		<div id={itemId != undefined ? itemId : ""} className="relative border border-gray-200 rounded-lg shadow-md px-2 py-2 min-w-fit">
 			<Link href={`/urun/${product.uri}`}>
-				<Image src={product.productImage != undefined ? product.productImage[0].fileUri: ""} width={width} height={height} alt={product.name} />
+				<Image src={product.productImages[0].fileUri != undefined ? product.productImages[0].fileUri: ""} width={width} height={height} alt={product.name} />
 				<div>{product.name}</div>
 				<div>Başlangıç fiyatı <span className="font-bold ">{product.price} ₺</span></div>
 			</Link>

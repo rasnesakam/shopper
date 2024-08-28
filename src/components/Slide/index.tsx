@@ -23,7 +23,7 @@ export const Slide = ({items, timeout}: {items: Array<{imageUri:string, redirect
 	
 	return <>
 
-		<div className="w-full h-[580px] static group">
+		<div className="w-full h-[100vh] static group">
 			<Link href={items[Math.abs(current)].redirectTo}>
 			<div style={{ backgroundImage: `url(${items[current].imageUri})`}}
 				className="w-full h-full bg-center bg-cover duration-500"

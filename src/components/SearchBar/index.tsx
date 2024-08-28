@@ -3,37 +3,60 @@ import {
     faSearch,
     faAngleRight
   } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import {ChangeEvent, useState} from "react";
 import { useRouter } from "next/router";
+import {func} from "prop-types";
 
 const SearchBar = () => {
 
     const [value, setValue] = useState("");
+    const [isFocus, setFocus] = useState(false)
 	const router = useRouter();
+    const [suggestions, setSuggestions] = useState([]);
 
     function submit(event: any){
         event.preventDefault();
 		router.push(`/arama/${encodeURIComponent(value)}`);
     }
 
+    function handleInput(e: ChangeEvent<HTMLInputElement>){
+
+        /*
+        * Update suggestions
+        * */
+        setValue(e.target.value.toLowerCase())
+    }
+
     return <>
-    <div className="border-2 border-gray bg-ground rounded-full p-1 ">
+    <div className="border-2 relative border-gray bg-ground rounded-full p-0 group">
 
-        <form className="flex justify-between divide-x" onSubmit={submit}>
-
-            <div className="">
-                <FontAwesomeIcon icon={faSearch} className="px-2" />
-            </div>
-            <div className="w-full">
-                <input type="text" placeholder="Ara" className="w-full  px-1 focus:outline-none" onChange={e => setValue(e.target.value.toLowerCase())} />
-            </div>
-            <div className="">
-                <button className="hover:bg-primary hover:text-white hover:rounded-r-full">
-                <FontAwesomeIcon icon={faAngleRight} className="px-2" />
+        <form className="flex justify-between divide-x h-8 items-center "
+              onFocus={e => setFocus(true) }
+              onBlur={e => setFocus(false)}
+              onSubmit={submit}>
+            <div className="w-8 h-8">
+                <button className="w-full h-full cursor-">
+                    <FontAwesomeIcon icon={faSearch} className="" />
                 </button>
             </div>
-
+            <div className="w-full">
+                <input type="text" placeholder="Ara" className="w-full h-8 px-1 focus:outline-none"
+                       onChange={ handleInput } />
+            </div>
+            <div className="h-8 w-8">
+                <button className="hover:bg-primary hover:text-white h-full w-full hover:rounded-r-full">
+                <FontAwesomeIcon icon={faAngleRight} className="w-8 h-8" />
+                </button>
+            </div>
         </form>
+        <div className={`${isFocus? "visible" : "hidden"} absolute w-full h-[520px] bg-ground border border-primary rounded-md`}>
+            <div className="font-bold m-4"> Search results</div>
+            <ul className="m-4">
+                {suggestions.map((suggestion, index) => (<li key={index}>
+                    suggestion
+                </li>))}
+            </ul>
+        </div>
     </div>
     
     </>
