@@ -1,3 +1,5 @@
+import {OrderForm} from "./OrderForm";
+
 type Product = {
 	name: string;
 	description: string;
@@ -12,8 +14,9 @@ type Product = {
 	price: number;
 	stockCode?: string,
 	mark?: string,
-	createdAt?: Date;
-	props?: Array<{key: string, value:string}>
+	createdAt?: number;
+	props?: Array<{key: string, value:string}>,
+	form?: OrderForm[]
 	
 }
 
