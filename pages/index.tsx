@@ -10,6 +10,7 @@ import Category from '../src/types/Category'
 import { useEffect, useState } from 'react'
 import getCategories from '../src/functions/getCategories'
 import getProductsByCategory from '../src/functions/getProductsByCategory'
+import {HeroSection} from "../src/components/HeroSection";
 
 
 
@@ -27,10 +28,7 @@ export default function Home() {
 
 	return (
     <>
-		<Slide timeout={3000} items={[
-			    {imageUri: "/images/batarya_dunyasi_design.png",redirectTo: ""},
-			    {imageUri: "/images/logo_bd_180x180.png", redirectTo: ""},
-		      ]}/>
+		<HeroSection />
 
 		{/* Öne Çıkan Ürünler */}
 		{categories.map((category, index) => {
