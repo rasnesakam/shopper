@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(401).json({"message": "Invalid username or password"});
         if (Bcrypt.compareSync(password, user!.password)) {
             cookies().set("auth",user!.id);
-            res.redirect(`/users/${user.id}/login`);
+            res.redirect(`/panel/urunler`);
         }
         else
             res.status(401).json({"message": "Invalid username or password"});
