@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { NavBar } from "../src/components/NavBar"
 import styles from '../styles/Home.module.css'
+import {CartContextAdapter} from "../src/contexts/cart/CartContextAdapter";
 
 export default function Layout({children}: any){
   
@@ -11,11 +12,14 @@ export default function Layout({children}: any){
 		  <link rel="shortcut icon" href="/images/favicon.ico" />
 		  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico" />
     </Head>
-	<NavBar />
 
-    <main className="flex flex-col items-center min-h-screen" >
-      {children}
-    </main>
+    <CartContextAdapter>
+      <NavBar />
+
+      <main className="flex flex-col items-center min-h-screen" >
+        {children}
+      </main>
+    </CartContextAdapter>
 
     <footer className={styles.footer}>
       <a
