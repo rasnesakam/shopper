@@ -17,6 +17,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import getProductByUri from "../../src/functions/getProductByUri";
 import {OrderDetailsForm} from "../../src/components/OrderDetailsForm";
 import {Incrementor} from "../../src/components/Incrementor";
+import {useCartContext} from "../../src/contexts/cart/CartContextAdapter";
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 	const productUri = context.query.uri;
@@ -56,7 +57,7 @@ export default function Products({product}: {product: Product}){
 	const [amount, setAmount] = useState(1);
 	const [favoriteIcon, setFavoriteIcon] = useState(emptyHeart);
 	const [favoriteText, setFavoriteText] = useState(favoriteTexts[0]);
-	const dispatch = useDispatch();
+	const {appendCart} = useCartContext()
 
 	//TODO: Favorite actions will be implemented
 	const handleFavorite = () => {
@@ -74,7 +75,7 @@ export default function Products({product}: {product: Product}){
 
 	// Handle cart action
 	const addCard = () => {
-		dispatch(addOrder({product, amount}))
+		appendCart({product, amount});
 	};
 
 	return <>

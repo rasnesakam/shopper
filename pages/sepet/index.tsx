@@ -8,22 +8,22 @@ import Order from "../../src/types/Order";
 import Product from "../../src/types/Product";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../src/redux/store";
 import { removeOrder } from "../../src/redux/slices/order";
 import config from "../../src/functions/config";
+import {useCartContext} from "../../src/contexts/cart/CartContextAdapter";
 
-function OrderItem(order:{product: Product, amount:number, status?:string}){
+function OrderItem(order:{product: Product, amount:number, status?:string, index: number}){
 	let statusComponent = <></>;
 	if (order.status != undefined)
 	{
 		statusComponent = <div>{order.status}</div>
 	}
-	const dispatch = useDispatch();
 	const [amount, setAmount] = useState(order.amount);
 	const [width, height] = [128,128]
 	const image = order.product.productImages.length > 0 ? order.product.productImages[0].fileUri: "/images/default.png";
 	const altText = order.product.productImages.length > 0 ? order.product.productImages[0].altText: "";
+	const {deleteItem} = useCartContext();
 	return <>
 		<div className="border shadow-md mb-5 p-2 rounded-lg flex flex-row flex-wrap">
 			<div className="w-full md:w-1/6">
@@ -56,7 +56,10 @@ function OrderItem(order:{product: Product, amount:number, status?:string}){
 			<div className="w-full md:w-2/6 flex flex-row items-center">
 				<div className="w-1/2 text-center">{order.product.price} ₺</div>
 				<div className="w-1/2 text-center">
-					<button className="p-1 rounded-sm hover:text-primary focus:border focus:border-primary" onClick={() => dispatch(removeOrder(order))}>
+					<button className="p-1 rounded-sm hover:text-primary focus:border focus:border-primary" onClick={() => {
+						alert("deleting index: " + order.index);
+						deleteItem(order.index);
+					}}>
 						<FontAwesomeIcon icon={faTrashCan} className="text-xl" />
 					</button>
 				</div>
@@ -69,19 +72,17 @@ export default function Sepet(){
 	const [checked, setChecked] = useState(false);
 	const checkStyle = "bg-primary";
 	const checkedContent = <FontAwesomeIcon icon={faCheck} size="xs" className="absolute top-0 left-0 text-white"/>
-
-	const order = useSelector((state: AppState) => state.order);
-	const dispatch = useDispatch();
+	const {cart} = useCartContext();
 	
-	const priceOrder = order.products.reduce((sum, item) => sum + (item.product.price * item.amount), 0);
+	const priceOrder = cart.products.reduce((sum, item) => sum + (item.product.price * item.amount), 0);
 	const priceCargo = 10;
 	const priceTotal = Math.floor((priceOrder + priceCargo) * 100 ) / 100;
 	return <div className="w-full px-5 pt-5">
 		
 		<div className="flex flex-row justify-center gap-2 pt-5 flex-wrap">
-			<div className="w-11/12">Sepetim <span className="">({order.products.length} Ürün)</span></div>
+			<div className="w-11/12">Sepetim <span className="">({cart.products.length} Ürün)</span></div>
 			<div className="w-full  lg:w-7/12">
-				{order.products.map((product,index) => <OrderItem product={product.product} amount={product.amount} key={index} />)}
+				{cart.products.map((product,index) => <OrderItem product={product.product} amount={product.amount} index={index} key={index} />)}
 			</div>
 			<div className="w-full lg:w-4/12">
 				<div className="border w-full shadow-md rounded-lg flex flex-col divide-y-2 p-5">
