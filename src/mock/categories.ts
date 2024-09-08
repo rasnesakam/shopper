@@ -6,6 +6,7 @@ const categories: Array<{category: Category, products: Array<Product>}> = [
         category: {
             name: "Pil",
             uri: "pil",
+            status: 1
         },
         products: products
     }
