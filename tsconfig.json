@@ -21,6 +21,7 @@
       "@component/*": ["./src/components/*"],
       "@type/*": ["./src/types/*"],
       "@context/*": ["./src/contexts/*"],
+      "@function/*": ["./src/functions"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/SearchBar/index.tsx"],

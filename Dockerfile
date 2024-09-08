@@ -1,4 +1,4 @@
-FROM node:19-alpine3.16
+FROM node:22-alpine3.19
 
 WORKDIR /app
 
@@ -18,5 +18,5 @@ RUN yarn run build
 COPY . .
 
 EXPOSE 3000
-
-CMD ["yarn","run","start"]
+ENTRYPOINT ["yarn"]
+CMD ["start"]

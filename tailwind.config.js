@@ -11,6 +11,10 @@ module.exports = {
 			primary: "#F26419",
 			secondary: "#216477",
 			ground:"#fefefe",
+			success: "#198754",
+			danger: "#DC3545",
+			info: "#17a2b8",
+			warning: "#ffc107",
 		},
 		screens:{
 			'xs': '320px', // eğer ekran genişliği 320px ten uzunsa
