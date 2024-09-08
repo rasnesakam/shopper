@@ -1,7 +1,4 @@
-import { Tab, Tabbed } from "../../src/components/TabbedPane";
-import { useDispatch, useSelector } from "react-redux";
-import authToken from "../../src/functions/authToken";
-import { AppState } from "../../src/redux/store";
+import { Tab, Tabbed } from "@src/components/TabbedPane";
 
 function page(){
 	return <>
@@ -40,8 +37,5 @@ function logIn(){
 }
 
 export default function hesap(){
-	const profile = useSelector((state: AppState) => state.profile);
-	//if (profile.authToken.length == 0 || !authToken(profile.authToken))
-	//	return logIn()
 	return page();
 }

@@ -5,7 +5,7 @@ import Product from "../../src/types/Product";
 import { GetServerSidePropsContext } from "next";
 export async function getServerSideProps(context: GetServerSidePropsContext){
 	const {uri} = context.query;
-	const products = await getProductsByCategory({name: "",uri:uri as string ?? ""},{page: -1,size: -1});
+	const products = await getProductsByCategory({name: "", status: 1, uri:uri as string ?? ""},{page: -1,size: -1});
 	return {
 		props: {
 			list: products
