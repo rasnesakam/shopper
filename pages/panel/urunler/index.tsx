@@ -1,6 +1,7 @@
 import {useState} from "react";
 import Product from "@type/Product";
 import mockProducts from "@src/mock/products"
+import Image from "next/image";
 export default function Products(){
 
     const [products, setProducts] = useState<Product[]>(mockProducts);
@@ -20,7 +21,7 @@ export default function Products(){
             <tbody className="">
                 {products.map((product, index) => <tr key={`product-${index}`}>
                     <td>
-                        <img className="w-16 h-16 mx-auto" src={product.productImages[0].fileUri}
+                        <Image width={64} height={64} className="mx-auto" src={product.productImages[0].fileUri}
                              alt={product.productImages[0].altText}/>
                     </td>
                     <td>
