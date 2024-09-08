@@ -1,6 +1,4 @@
-import Product from "../types/Product";
-import config from "./config";
-import fetcData from "./fetchData";
+import Product from "@type/Product";
 import products from "../mock/products";
 
 export default async function getProductByUri(uri: string): Promise<Product> {

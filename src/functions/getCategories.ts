@@ -1,9 +1,5 @@
-import Category from "../types/Category";
-import Product from "../types/Product";
-import config from "./config";
-import fetcData from "./fetchData";
+import Category from "@type/Category"
 import categories from "../mock/categories"
-import category from "../types/Category";
 
 export default async function 
 getCategories(): Promise<Array<Category>>{
