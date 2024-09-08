@@ -4,18 +4,21 @@ type Product = {
 	name: string;
 	description: string;
 	productImages: Array<{
-		id:string
-		productId: string,
-		product?: Product,
 		fileUri: string,
 		altText: string
 	}>;
+	categories: Array<{
+		name: string,
+		uri: string
+	}>;
+	tags: Array<{
+		tag: string
+	}>;
+	properties: Array<{key: string, value:string}>,
 	uri: string;
 	price: number;
-	stockCode?: string,
-	mark?: string,
+	brand?: string,
 	createdAt?: number;
-	props?: Array<{key: string, value:string}>,
 	form?: OrderForm[]
 	
 }
