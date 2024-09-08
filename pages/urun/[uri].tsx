@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { useRouter } from "next/router"
 import { useState } from "react";
-import Product from "../../src/types/Product";
+import Product from "@type/Product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
 	faPlus,
@@ -10,14 +9,11 @@ import {
 	faArrowTrendDown
  } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { setOrderData, addOrder } from "../../src/redux/slices/order";
-import { AppState } from "../../src/redux/store";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import getProductByUri from "../../src/functions/getProductByUri";
-import {OrderDetailsForm} from "../../src/components/OrderDetailsForm";
-import {Incrementor} from "../../src/components/Incrementor";
-import {useCartContext} from "../../src/contexts/cart/CartContextAdapter";
+import getProductByUri from "@src/functions/getProductByUri";
+import {OrderDetailsForm} from "@component/OrderDetailsForm";
+import {Incrementor} from "@component/Incrementor";
+import {useCartContext} from "@context/cart/CartContextAdapter";
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
 	const productUri = context.query.uri;
