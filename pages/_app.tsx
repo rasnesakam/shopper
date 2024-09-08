@@ -3,8 +3,6 @@ import type { AppProps } from 'next/app'
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Layout from './layout';
-import { Provider } from 'react-redux';
-import { PersistGate } from "redux-persist/integration/react";
 
 config.autoAddCss = false;
 
