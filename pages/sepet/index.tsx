@@ -1,17 +1,11 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getCookie } from "cookies-next"
 import Image from "next/image";
 import { useState } from "react";
-import getOrders from "../../src/functions/getOrderFromCookie";
-import Order from "../../src/types/Order";
-import Product from "../../src/types/Product";
+import Product from "@type/Product";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { AppState } from "../../src/redux/store";
-import { removeOrder } from "../../src/redux/slices/order";
-import config from "../../src/functions/config";
-import {useCartContext} from "../../src/contexts/cart/CartContextAdapter";
+import {useCartContext} from "@context/cart/CartContextAdapter";
 
 function OrderItem(order:{product: Product, amount:number, status?:string, index: number}){
 	let statusComponent = <></>;
